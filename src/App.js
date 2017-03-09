@@ -5,8 +5,8 @@ import marked from 'marked'
 var initialSource = getDefaultSource();
 
 class App extends Component {
-  getMarkDownText(){
-    var rawMarkup = marked('# This is _Markdown_.',{sanitize: true});
+  getMarkDownText(val){
+    var rawMarkup = marked(val,{sanitize: true});
     return{
       __html: rawMarkup
     };
@@ -26,7 +26,7 @@ class App extends Component {
             defaultValue = {initialSource}
             onChange = {this.onChange}>
           </textarea>
-          <div className = "preview" dangerouslySetInnerHTML={this.getMarkDownText()}/>
+          <div className = "preview" dangerouslySetInnerHTML={this.state.val}/>
         </div>
       </div>
     );
