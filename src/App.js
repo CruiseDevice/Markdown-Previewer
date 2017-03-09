@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-
+import marked from 'marked'
 class App extends Component {
+  getMarkDownText(){
+    var rawMarkup = marked('# This is _Markdown_.',{sanitize: true});
+    return{
+      __html: rawMarkup
+    };
+  }
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+        <div className="heading">
+          <h1>MarkDown Previewer</h1>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <textarea
+          className = "editor">
+        </textarea>
+        <div dangerouslySetInnerHTML={this.getMarkDownText()}/>
       </div>
     );
   }
