@@ -1,1 +1,2 @@
 [Using marked in react](http://stackoverflow.com/questions/34686523/using-marked-in-react)
+[react-markdown](https://github.com/rexxars/react-markdown)
