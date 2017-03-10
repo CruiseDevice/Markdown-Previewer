@@ -5,28 +5,18 @@ import marked from 'marked'
 var initialSource = getDefaultSource();
 
 class App extends Component {
-  getMarkDownText(val){
-    var rawMarkup = marked(val,{sanitize: true});
+  getMarkDownText = (initialSource) => {
+    var rawMarkup = marked(initialSource,{sanitize: true});
     return{
       __html: rawMarkup
     };
-  }
-  onChange(e){
-    this.setState({
-      source:e.target.value
-    });
-    this.storeSource(e.target.value);
   }
   render() {
     return (
       <div className="App">
         <div>
-          <textarea
-            className = "editor"
-            defaultValue = {initialSource}
-            onChange = {this.onChange}>
-          </textarea>
-          <div className = "preview" dangerouslySetInnerHTML={this.state.val}/>
+          <TextArea/>
+          <div className = "preview" dangerouslySetInnerHTML={this.getMarkDownText(initialSource)}/>
         </div>
       </div>
     );
@@ -68,5 +58,20 @@ function getDefaultSource(){
     '',
     '*[Herman Fassett](https://freecodecamp.com/hermanfassett)*'
   ].join('\n')
+}
+class TextArea extends Component{
+  onChange(e){
+     this.setState({ source: e.target.value });
+  }
+  render(){
+    return(
+      <div>
+        <textarea
+          className = "editor"
+          defaultValue = {initialSource}>
+        </textarea>
+     </div>
+   );
+  }
 }
 export default App;
