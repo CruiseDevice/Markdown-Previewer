@@ -22,6 +22,10 @@ class App extends Component {
     var evaluate = this.state ? this.state.source : initialSource;
     return (
       <div className="App">
+        <div className = "App-header">
+          MarkDown Previewer
+        </div>
+
         <div>
           <textarea
             className = "editor"
